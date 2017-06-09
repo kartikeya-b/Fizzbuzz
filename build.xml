@@ -4,6 +4,12 @@
     <!-- Global Build Properties        -->
     <property name="source" location="src/"/>
     <property name="build" location="build/"/>
+    <property name="sonar.projectKey" value="testproject" />
+    <property name="sonar.projectName" value="testproject" />
+    <property name="sonar.projectVersion" value="1.0.0" />
+    <property name="sonar.sources" value="app" />
+    <property name="sonar.sourceEncoding" value="UTF-8" />
+
 
 
     <!-- Prepare the Workspace          -->
@@ -13,6 +19,15 @@
         <delete dir="${basedir}/build/logs"/>
         <delete dir="${basedir}/build/pdepend"/>
     </target>
+    
+    <target name="sonar">
+    <taskdef uri="antlib:org.sonar.ant" resource="org/sonar/ant/antlib.xml">
+        <!-- Update the following line, or put the "sonarqube-ant-task-*.jar" file in your "$HOME/.ant/lib" folder -->
+    </taskdef>
+ 
+    <!-- Execute SonarQube Scanner for Ant Analysis -->
+    <sonar:sonar />
+</target>
 
     <target name="prepare" depends="clean" description="Prepare for build">
         <mkdir dir="${basedir}/build/api"/>
